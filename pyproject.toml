@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "chat"
+version = "0.1.0"
+description = ""
+authors = ["Junnoh Lee <pluruel@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.78.0"
+uvicorn = "^0.17.6"
+websockets = "^10.3"
+redis = "^4.3.1"
+aioredis = "^2.0.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
