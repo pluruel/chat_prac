@@ -1,3 +1,4 @@
+from abc import abstractmethod
 import json
 
 
@@ -17,6 +18,11 @@ class Message(DTO):
         assert type(self.type) is str
 
 
+    @abstractmethod
+    def run(self):
+        pass
+
+
 class SystemMessage(Message):
     code: str
 
@@ -24,6 +30,9 @@ class SystemMessage(Message):
         super(SystemMessage, self).__init__()
         self.code = self.raw.get('code')
 
+    def run(self, socket: W):
+        getattr(self, self.code)()
+        
 
 class ChatMessage(Message):
     chat_data: str
@@ -31,3 +40,6 @@ class ChatMessage(Message):
     def __init__(self):
         super(ChatMessage, self).__init__()
         self.chat_data = self.raw.get('chat_data')
+
+    def run(self):
+        

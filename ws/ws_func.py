@@ -6,29 +6,18 @@ from fastapi.websockets import WebSocket, WebSocketDisconnect
 
 import async_timeout
 
-def handle_system_msg(ws: WebSocket, msg: str):
-    funcs = {
-        "handshake":
-    }
-
-def handle_chat_msg(ws: WebSocket, msg: str):
-    chat = json.loads(meg)
-
-def handle_msg(ws: WebSocket, msg: str):
-    message = json.loads(msg)
-    type =
-
 
 async def consumer_handler(ws: WebSocket, r: Redis, logger):
     try:
         while True:
             message = await ws.receive_text()
             if message:
+
                 d = json.loads(message)
                 print(d)
                 if d['data'] == 'EXIT':
                     await r.publish("channel:1", 'goodbye')
-                    break;
+                    break
                 await r.publish("channel:1", d['data'])
 
     except WebSocketDisconnect as exc:
